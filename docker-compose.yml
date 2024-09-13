@@ -24,6 +24,21 @@ services:
     networks:
       - mongo-network
 
+  app:
+    build: .
+    container_name: app
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URI: mongodb://mongo:27017/checkpoint04_rm93688
+    depends_on:
+      - mongo
+    volumes:
+      - .:/usr/src/app
+    command: npm start
+    networks:
+      - mongo-network
+
 volumes:
   mongo-data:
 
